@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes des Étudiants</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo de l'école" width="150">
+        </div>
+        <h1>Notes des Étudiants</h1>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Connexion</h2>
+            <form id="loginForm">
+                <label for="massar">Code Massar :</label>
+                <input type="text" id="massar" name="massar" placeholder="Ex: R134599413" required>
+                <button type="submit" class="btn">Afficher les notes</button>
+            </form>
+        </section>
+
+        <section id="result" class="hidden">
+            <h2>Résultats</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Code Massar</th>
+                        <th>Modules</th>
+                        <th>Moyenne Finale</th>
+                    </tr>
+                </thead>
+                <tbody id="studentInfo">
+                    <!-- Les informations seront ajoutées ici par JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 - Tous droits réservés</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
