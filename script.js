@@ -8,11 +8,11 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
             nom: "HADRI",
             prenom: "LAMYAE",
             modules: {
-                "DROIT GÉNÉRAL": 14.75,
+                "DROIT GÉNÉRAL": 17.00,
                 "MICROÉCONOMIE": 14.75,
                 "COMPTABILITÉ GÉNÉRALE": 15.25,
                 "MANAGEMENT": 16.00,
-                "MATHÉMATIQUE APPLIQUÉE": 10.75,
+                "MATHÉMATIQUE APPLIQUÉE": 14.75,
                 "LANGUE ÉTRANGÈRE": 15.25,
                 "MÉTHODOLOGIE DE TRAVAIL UNIVERSITAIRE": 18.00
             }
