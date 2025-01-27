@@ -8,11 +8,11 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
             nom: "HADRI",
             prenom: "LAMYAE",
             modules: {
-                "DROIT GÉNÉRAL": 15.50,
+                "DROIT GÉNÉRAL": 14.75,
                 "MICROÉCONOMIE": 14.75,
                 "COMPTABILITÉ GÉNÉRALE": 15.25,
                 "MANAGEMENT": 16.00,
-                "MATHÉMATIQUE APPLIQUÉE": 13.50,
+                "MATHÉMATIQUE APPLIQUÉE": 10.75,
                 "LANGUE ÉTRANGÈRE": 15.25,
                 "MÉTHODOLOGIE DE TRAVAIL UNIVERSITAIRE": 18.00
             }
@@ -25,14 +25,20 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         document.getElementById('result').classList.remove('hidden');
         const tableBody = document.getElementById('studentInfo');
 
-        // Calcul de la moyenne
-        const notes = Object.values(result.modules);
-        const moyenne = (notes.reduce((sum, note) => sum + note, 0) / notes.length).toFixed(2);
+        // Déterminer le résultat global
+        let globalResult = "V"; // Par défaut, on suppose que l'étudiant a validé
+        for (const note of Object.values(result.modules)) {
+            if (note < 10) {
+                globalResult = "RAT";
+                break; // Si un module est en dessous de 10, le résultat global est "RAT"
+            }
+        }
 
         // Construction du tableau
         let modulesHTML = "";
         for (const [module, note] of Object.entries(result.modules)) {
-            modulesHTML += `<tr><td colspan="3">${module}</td><td>${note}</td></tr>`;
+            const moduleResult = note >= 10 ? "V" : "RAT";
+            modulesHTML += `<tr><td colspan="3">${module}</td><td>${moduleResult}</td></tr>`;
         }
 
         tableBody.innerHTML = `
@@ -45,7 +51,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
                         ${modulesHTML}
                     </table>
                 </td>
-                <td>${moyenne}</td>
+                <td>${globalResult}</td>
             </tr>
         `;
     } else {
