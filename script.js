@@ -1,5 +1,6 @@
 document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+    e.preventDefault(); // Empêcher l'actualisation de la page
+
     const codeMassar = document.getElementById('massar').value;
 
     // Données de l'étudiant
