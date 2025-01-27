@@ -25,35 +25,27 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         document.getElementById('result').classList.remove('hidden');
         const tableBody = document.getElementById('studentInfo');
 
-        // Déterminer le résultat global
-        let globalResult = "V"; // Par défaut, on suppose que l'étudiant a validé
-        for (const note of Object.values(result.modules)) {
-            if (note < 10) {
-                globalResult = "RAT";
-                break; // Si un module est en dessous de 10, le résultat global est "RAT"
-            }
-        }
-
         // Construction du tableau
         let modulesHTML = "";
         for (const [module, note] of Object.entries(result.modules)) {
-            const moduleResult = note >= 10 ? "V" : "RAT";
-            modulesHTML += `<tr><td colspan="3">${module}</td><td>${moduleResult}</td></tr>`;
+            const moduleResult = note >= 10 ? "V" : "RAT"; // Détermine le résultat du module
+            modulesHTML += `
+                <tr>
+                    <td>${result.nom}</td>
+                    <td>${result.prenom}</td>
+                    <td>${codeMassar}</td>
+                    <td>${module}</td>
+                    <td>${note}</td>
+                    <td>${moduleResult}</td>
+                </tr>
+            `;
         }
 
-        tableBody.innerHTML = `
-            <tr>
-                <td>${result.nom}</td>
-                <td>${result.prenom}</td>
-                <td>${codeMassar}</td>
-                <td>
-                    <table style="width: 100%; border: none;">
-                        ${modulesHTML}
-                    </table>
-                </td>
-                <td>${globalResult}</td>
-            </tr>
-        `;
+        tableBody.innerHTML = modulesHTML;
+    } else {
+        alert("Code Massar non trouvé !");
+    }
+});
     } else {
         alert("Code Massar non trouvé !");
     }
