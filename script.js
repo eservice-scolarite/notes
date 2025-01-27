@@ -1,9 +1,9 @@
 document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Empêcher l'actualisation de la page
+    e.preventDefault(); // Empêche l'actualisation de la page
 
     const codeMassar = document.getElementById('massar').value;
 
-    // Données de l'étudiant
+    // Données des étudiants
     const studentData = {
         "R134599413": {
             nom: "HADRI",
@@ -23,16 +23,18 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     const result = studentData[codeMassar];
 
     if (result) {
+        // Rendre la section des résultats visible
         document.getElementById('result').classList.remove('hidden');
         const tableBody = document.getElementById('studentInfo');
 
-        // Construction du tableau avec "V" ou "RAT"
+        // Générer le contenu des modules
         let modulesHTML = "";
         for (const [module, note] of Object.entries(result.modules)) {
             const status = note >= 10 ? "V" : "RAT";
-            modulesHTML += `<tr><td colspan='2'>${module}</td><td>${note}</td><td>${status}</td></tr>`;
+            modulesHTML += `<tr><td>${module}</td><td>${note}</td><td>${status}</td></tr>`;
         }
 
+        // Insérer les informations dans le tableau principal
         tableBody.innerHTML = `
             <tr>
                 <td>${result.nom}</td>
@@ -40,13 +42,23 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
                 <td>${codeMassar}</td>
                 <td>
                     <table style="width: 100%; border: none;">
-                        ${modulesHTML}
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Note</th>
+                                <th>Résultat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${modulesHTML}
+                        </tbody>
                     </table>
                 </td>
                 <td>--</td>
             </tr>
         `;
     } else {
-        alert("Code Massar non trouvé !");
+        // Alerte si le code Massar est invalide
+        alert("Code Massar non trouvé !");
     }
 });
