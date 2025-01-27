@@ -54,7 +54,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
                         </tbody>
                     </table>
                 </td>
-                <td>--</td>
+                <td>V</td>
             </tr>
         `;
     } else {
