@@ -25,27 +25,26 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         document.getElementById('result').classList.remove('hidden');
         const tableBody = document.getElementById('studentInfo');
 
-        // Construction du tableau
+        // Construction du tableau avec "V" ou "RAT"
         let modulesHTML = "";
         for (const [module, note] of Object.entries(result.modules)) {
-            const moduleResult = note >= 10 ? "V" : "RAT"; // Détermine le résultat du module
-            modulesHTML += `
-                <tr>
-                    <td>${result.nom}</td>
-                    <td>${result.prenom}</td>
-                    <td>${codeMassar}</td>
-                    <td>${module}</td>
-                    <td>${note}</td>
-                    <td>${moduleResult}</td>
-                </tr>
-            `;
+            const status = note >= 10 ? "V" : "RAT";
+            modulesHTML += `<tr><td colspan='2'>${module}</td><td>${note}</td><td>${status}</td></tr>`;
         }
 
-        tableBody.innerHTML = modulesHTML;
-    } else {
-        alert("Code Massar non trouvé !");
-    }
-});
+        tableBody.innerHTML = `
+            <tr>
+                <td>${result.nom}</td>
+                <td>${result.prenom}</td>
+                <td>${codeMassar}</td>
+                <td>
+                    <table style="width: 100%; border: none;">
+                        ${modulesHTML}
+                    </table>
+                </td>
+                <td>--</td>
+            </tr>
+        `;
     } else {
         alert("Code Massar non trouvé !");
     }
